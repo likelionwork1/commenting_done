@@ -1,0 +1,18 @@
+<h1>Homes#edit</h1>
+<p>Find me in app/views/homes/edit.html.erb</p>
+
+<!--<form action="/homes/update/<%=@user.id%>" method="get">-->
+<%= form_for @user, url: home_path, method: "PATCH" do |f| %>
+    <!--새 이름: <input type="text" name="name" value=<%=@user.name%> > <br>-->
+    새 이름: <%= f.text_field :name %> <br>
+    
+    <!--새 이메일: <input type="email" name="email" value=<%=@user.email%> > <br>-->
+    새 이메일: <%= f.email_field :email %> <br>
+    
+    <!--새 패스워드: <input type="password" name="password" value=<%=@user.email%> > <br>-->
+    새 패스워드: <%= f.password_field :password %> <br>
+    
+    <!--<input type="submit" value="수정완료">-->
+    <%= f.submit "수정완료" %>
+<% end %>
+<!--</form>-->

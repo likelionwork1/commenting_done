@@ -1,0 +1,32 @@
+<h1>Homes#show</h1>
+<p>Find me in app/views/homes/show.html.erb</p>
+
+<hr>
+이 회원 이름: <%= @user.name %> <br>
+이 회원 이메일: <%= @user.email %> <br>
+<!--<a href="/homes/index"> 되돌아가기 </a> <br>-->
+<%= link_to "되돌아가기", homes_path %>
+
+<!--<a href="/homes/edit/<%= @user.id %>"> 회원정보 수정하기 </a> <br>-->
+<%= link_to "회원정보 수정하기", edit_home_path(id: @user.id) %>
+
+<!--<a href="/homes/destroy/<%= @user.id %>"> 회원정보 삭제하기 </a> <br>-->
+<%= link_to "회원정보 삭제하기", home_path(id: @user.id), method: :DELETE %>
+
+<hr>
+
+<%= form_for @comment, url: post_comments_path(@user.id), method: "POST" do |f| %>
+    작성자: <%= f.text_field :user %>
+    내용: <%= f.text_field :memo %>
+    <%= f.submit "댓글쓰기" %>
+<% end %>
+
+<hr>
+
+<% @user.comments.each do |c| %>
+    작성자: <%= c.user %>
+    내용: <%= c.memo %> 
+    <%= c.class %> <br>
+    <%= link_to "삭제하기", post_comment_path(@user.id, c.id), method: "DELETE" %> <br>
+    
+<% end %>
